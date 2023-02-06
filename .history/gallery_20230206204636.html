@@ -168,9 +168,7 @@
         loadData("gallery-categories", "gallery-categories-template", "gallery-categories");
         loadData("gallery", "gallery-template", "gallery")
 
-        function disableLink(link) 
-        //link nay chinh la the a ben tren
-        {
+        function disableLink(link) {
             let links =document.querySelectorAll('#gallery-categories a');
             for (let i=0; i<links.length; i++){
                 links[i].classList.remove("disabled");

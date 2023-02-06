@@ -146,12 +146,12 @@
 
     <script id="gallery-categories-template" type="text/x-handlebars-template">
         <li class="nav-item">
-            <a class="nav-link disabled ps-0" href="#" aria-current="page" onclick="loadData('gallery', 'gallery-template', 'gallery')">Show all</a>
+            <a class="nav-link disabled ps-0" href="#" aria-current="page">Show all</a>
         </li>
         {{#each data}}
         <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadData('gallery/categories/{{id}}'
-            , 'gallery-template', 'gallery'); disableLink(this)">{{name}}</a>
+            <a class="nav-link" href="#" onclick="loadData('gallery/categories/{{categoriesId}}'
+            , 'gallery-template', 'gallery')">{{name}}</a>
         </li>
         {{/each}}
     </script>
@@ -166,17 +166,7 @@
         
     <script>
         loadData("gallery-categories", "gallery-categories-template", "gallery-categories");
-        loadData("gallery", "gallery-template", "gallery")
-
-        function disableLink(link) 
-        //link nay chinh la the a ben tren
-        {
-            let links =document.querySelectorAll('#gallery-categories a');
-            for (let i=0; i<links.length; i++){
-                links[i].classList.remove("disabled");
-            }
-            link.classList.toggle("disabled");
-        }
+        loadData("gallery", "gallery-template", "")
     </script>
 </body>
 

@@ -66,10 +66,28 @@
         <ul class="nav" id="gallery-categories">
             
         </ul>
-        <div class="row py-2" id="gallery">
-            
+        <div class="row py-2">
+            <div class="col-md-3">
+                <img src="images/gallery/gallery-thumb1.jpg" alt="image1" class="img-thumbnail mb-3">
+            </div>
+            <div class="col-md-3">
+                <img src="images/gallery/gallery-thumb1.jpg" alt="image1" class="img-thumbnail mb-3">
+            </div>
+            <div class="col-md-3">
+                <img src="images/gallery/gallery-thumb1.jpg" alt="image1" class="img-thumbnail mb-3">
+            </div>
+            <div class="col-md-3">
+                <img src="images/gallery/gallery-thumb1.jpg" alt="image1" class="img-thumbnail mb-3">
+            </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-3">
+                <img src="images/gallery/gallery-thumb1.jpg" alt="image1" class="img-thumbnail mb-3">
+            </div>
+            <div class="col-md-3">
+                <img src="images/gallery/gallery-thumb1.jpg" alt="image1" class="img-thumbnail mb-3">
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -146,37 +164,17 @@
 
     <script id="gallery-categories-template" type="text/x-handlebars-template">
         <li class="nav-item">
-            <a class="nav-link disabled ps-0" href="#" aria-current="page" onclick="loadData('gallery', 'gallery-template', 'gallery')">Show all</a>
+            <a class="nav-link disabled ps-0" href="#" aria-current="page">Show all</a>
         </li>
         {{#each data}}
         <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadData('gallery/categories/{{id}}'
-            , 'gallery-template', 'gallery'); disableLink(this)">{{name}}</a>
+            <a class="nav-link" href="#" onclick="loadData('gallery-categories/category/{{}}, 'gallery-categories-template')">{{name}}</a>
         </li>
         {{/each}}
     </script>
 
-    <script id="gallery-template" type="text/x-handlebars-template">
-        {{#each data}}
-        <div class="col-md-3">
-            <img src="{{thumbpath}}" alt="{{name}}" class="img-thumbnail mb-3">
-        </div>
-        {{/each}}
-    </script>
-        
     <script>
         loadData("gallery-categories", "gallery-categories-template", "gallery-categories");
-        loadData("gallery", "gallery-template", "gallery")
-
-        function disableLink(link) 
-        //link nay chinh la the a ben tren
-        {
-            let links =document.querySelectorAll('#gallery-categories a');
-            for (let i=0; i<links.length; i++){
-                links[i].classList.remove("disabled");
-            }
-            link.classList.toggle("disabled");
-        }
     </script>
 </body>
 
