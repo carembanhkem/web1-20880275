@@ -152,18 +152,17 @@
                   <textarea class="form-control" name="message" id="message" rows="3" required></textarea>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <div id="responseMessage" class="text-info"></div>
-                    </div>
-                    <div class="col">
-                        <div class="text-end">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="copy">Send copy to yourself&nbsp;</label>
-                                <input type="checkbox" id="copy" value="1"> &nbsp; &nbsp;
-                                <button type="submit" class="btn btn-primary">Send Email to Us</button>
-                              </div>
-                        </div>
-                    </div>
+                    
+                </div>
+                <div class="text-end">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="copy">Send copy to yourself&nbsp;</label>
+                        <input type="checkbox" id="copy" value="1"> &nbsp; &nbsp;
+                        <button type="submit" class="btn btn-primary">Send Email to Us</button>
+                      </div>
+                </div>
+                <div id="responseMessage" class="text-danger text-center">
+
                 </div>
             </form>
         </div>
@@ -289,10 +288,7 @@
                     if (response.status == 200){
                         sendMail();
                     } else {
-                        let responseMessage= document.getElementById("responseMessage");
-                        responseMessage.innerHTML = "Error: Can not verify RECAPTCHA";
-                        responseMessage.classList.remove();//remove het nen se luon bat text-danger sau do
-                        responseMessage.classList.toggle("text-danger");
+                        document.getElementById("responseMessage").innerHTML = "Error: Can not verify RECAPTCHA";
                     }
                 });
             });

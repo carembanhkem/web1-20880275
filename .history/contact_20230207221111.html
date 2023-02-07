@@ -289,10 +289,10 @@
                     if (response.status == 200){
                         sendMail();
                     } else {
-                        let responseMessage= document.getElementById("responseMessage");
-                        responseMessage.innerHTML = "Error: Can not verify RECAPTCHA";
-                        responseMessage.classList.remove();//remove het nen se luon bat text-danger sau do
-                        responseMessage.classList.toggle("text-danger");
+                        let response= document.getElementById("responseMessage");
+                        response.innerHTML = "Error: Can not verify RECAPTCHA";
+                        response.classList.remove("text-info");
+                        response.classList.toggle("text-danger");
                     }
                 });
             });
