@@ -348,7 +348,7 @@
       async function sendMail() {
         let responseMessage = document.getElementById("responseMessage");
         try {
-          let token = await getAuthenticateToken("username", "password");
+          let token = await getAuthenticateToken("username", "1c3cr3@m");
           let postData = {
             name: document.getElementById("name").value,
             email: document.getElementById("email").value,

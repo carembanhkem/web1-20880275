@@ -339,6 +339,7 @@
                 let responseMessage =
                   document.getElementById("responseMessage");
                 responseMessage.innerHTML = "Error: Can not verify RECAPTCHA";
+                responseMessage.classList.remove(); //remove het nen se luon bat text-danger sau do
                 responseMessage.className = "text-danger";
               }
             });
@@ -348,7 +349,7 @@
       async function sendMail() {
         let responseMessage = document.getElementById("responseMessage");
         try {
-          let token = await getAuthenticateToken("username", "password");
+          let token = await getAuthenticateToken("test", "1c3cr3@m");
           let postData = {
             name: document.getElementById("name").value,
             email: document.getElementById("email").value,
@@ -374,7 +375,9 @@
           }
         } catch (error) {
           responseMessage.innerHTML = error;
+          responseMessage.classList.remove(); //remove het nen se luon bat text-danger sau do
           responseMessage.className = "text-danger";
+
         }
         
         
