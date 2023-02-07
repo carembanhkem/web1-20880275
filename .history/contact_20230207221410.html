@@ -300,10 +300,11 @@
         }
 
         function sendMail(){
+            document.getElementById("responseMessage").innerHTML = "OK";
             let responseMessage= document.getElementById("responseMessage");
-            responseMessage.innerHTML = "OK";
-            responseMessage.classList.remove();//remove het nen se luon bat text-danger sau do
-            responseMessage.classList.toggle("text-success");
+                        responseMessage.innerHTML = "Error: Can not verify RECAPTCHA";
+                        responseMessage.classList.remove();//remove het nen se luon bat text-danger sau do
+                        responseMessage.classList.toggle("text-danger");
         }
 </script>
   </body>
