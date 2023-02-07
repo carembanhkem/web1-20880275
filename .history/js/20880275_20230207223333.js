@@ -27,5 +27,6 @@ async function getAuthenticateToken(username, password) {
     if (response.status == 200){
         return result.token;
     };
-    throw new Error(result.message);
+    throw new Error(result.message)
+
 }

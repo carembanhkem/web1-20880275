@@ -315,7 +315,6 @@
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6LevhF4kAAAAAE7L07kyHuN_1k2rtEniGsRq2jTk"></script>
 
     <script src="js/20880275.js"></script>
-    <!-- Submit => kiem tra RECAPTCHA (output: Google tra ve token) Bat loi => SendMail : 1. kiem tra token Bat loi 2. Gui Data Bat loi  -->
     <script>
       function onSubmit(e) {
         e.preventDefault();
@@ -329,7 +328,7 @@
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  "Accept": "application/json",
+                  Accept: "application/json",
                 },
                 body: JSON.stringify({ "g-token": token }),
               });
@@ -361,18 +360,13 @@
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Accept": "application/json",
-              "Authorization": "Bearer " + token //Phai gui kem token da verify thanh cong. Day chi la 1 yeu cau cua API, co nhung thu da verify thi ko gui kem token chac cung duoc
+              "Accept": "application/json"
             },
             body: JSON.stringify(postData)
           });
           let result = await response.json();
           if (response.status == 200){
-            responseMessage.innerHTML = response.message;
-            responseMessage.classList.remove();
-            responseMessage.classList.toggle("text-success");
-          } else {
-            throw new Error(response.message);
+            respo
           }
         } catch (error) {
           responseMessage.innerHTML = error;

@@ -28,4 +28,5 @@ async function getAuthenticateToken(username, password) {
         return result.token;
     };
     throw new Error(result.message);
+
 }
