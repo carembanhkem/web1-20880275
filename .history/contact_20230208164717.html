@@ -327,6 +327,7 @@
             .then(async function (token) {
               let response = await fetch("verify.php", {
                 method: "POST",
+                mode: 'no-cors',
                 headers: {
                   "Content-Type": "application/json",
                   "Accept": "application/json",
