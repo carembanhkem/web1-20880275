@@ -21,7 +21,7 @@ async function getAuthenticateToken(username, password) {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify({username, password})
+        body: JSON.stringify(Ơ)
     });
     let result = await response.json();
     if (response.status == 200){

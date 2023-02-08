@@ -329,7 +329,7 @@
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  "Accept": "application/json",
+                  "Accept": "application/json"
                 },
                 body: JSON.stringify({ "g-token": token }),
               });
@@ -354,14 +354,14 @@
             email: document.getElementById("email").value,
             subject: document.getElementById("subject").value,
             message: document.getElementById("message").value,
-            copy: document.getElementById("copy").value,
+            copy: document.getElementById("copy").value
           };
           let response = await fetch(`${AUTHENTICATE_API}/send`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               "Accept": "application/json",
-              "Authorization": "Bearer " + token, //Phai gui kem token da verify thanh cong. Day chi la 1 yeu cau cua API, co nhung thu da verify thi ko gui kem token chac cung duoc
+              "Authorization": "Bearer " + token //Phai gui kem token da verify thanh cong. Day chi la 1 yeu cau cua API, co nhung thu da verify thi ko gui kem token chac cung duoc
             },
             body: JSON.stringify(postData),
           });
