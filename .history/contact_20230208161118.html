@@ -330,7 +330,6 @@
                 headers: {
                   "Content-Type": "application/json",
                   "Accept": "application/json",
-                  'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify({ "g-token": token }),
               });
@@ -362,7 +361,6 @@
             headers: {
               "Content-Type": "application/json",
               "Accept": "application/json",
-              'Access-Control-Allow-Origin': '*',
               "Authorization": "Bearer " + token //Phai gui kem token da verify thanh cong. Day chi la 1 yeu cau cua API, co nhung thu da verify thi ko gui kem token chac cung duoc
             },
             body: JSON.stringify(postData),
