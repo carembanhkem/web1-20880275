@@ -68,13 +68,12 @@ function displayControls(islogin = true) {
 }
 
 async function checkLogin(){
-    let isLogin = await verifyToken();
-    displayControls(isLogin);
+    let token = localStorage.getItem("token");
+    let result = verifyToken();
     
 }
 
 async function verifyToken() {
-    let token = localStorage.getItem("token");
     if (token) {
         let response = await fetch(`${AUTHENTICATE_API}/verify`, {
             method : "POST",
@@ -88,5 +87,5 @@ async function verifyToken() {
             return true;
         }
     }
-    return false;
+    retur
 }

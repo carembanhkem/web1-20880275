@@ -68,8 +68,7 @@ function displayControls(islogin = true) {
 }
 
 async function checkLogin(){
-    let isLogin = await verifyToken();
-    displayControls(isLogin);
+    let isLogin = verifyToken();
     
 }
 

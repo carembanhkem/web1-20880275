@@ -68,12 +68,6 @@ function displayControls(islogin = true) {
 }
 
 async function checkLogin(){
-    let isLogin = await verifyToken();
-    displayControls(isLogin);
-    
-}
-
-async function verifyToken() {
     let token = localStorage.getItem("token");
     if (token) {
         let response = await fetch(`${AUTHENTICATE_API}/verify`, {
@@ -83,10 +77,6 @@ async function verifyToken() {
                 "Accept": "application/json",
                 "Authorization": "Bearer " + token
             }
-        });
-        if (response.status == 200){
-            return true;
-        }
+        })
     }
-    return false;
 }
