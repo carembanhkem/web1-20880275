@@ -78,9 +78,7 @@
                 class="nav-link linkLogouts"
                 href="#"
                 data-bs-toggle="modal"
-                data-bs-target="#modalLogin" 
-                onclick="logOut()"
-                style="display: none;"
+                data-bs-target="#modalLogin" onclick="logOut()"
                 >Logout</a
               >
             </li>
@@ -251,7 +249,6 @@
             data-bs-toggle="modal"
             data-bs-target="#modalLogin"
             onclick="logOut()"
-            style="display: none;"
             >Logout</a
           >
         </li>
@@ -287,7 +284,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="#" method="post" id="formLogin" onsubmit="login(event)">
+            <form action="#" method="post" id="formLogin">
               <h3 class="text-center">Login Form</h3>
               <div class="mb-3">
                 <input
@@ -310,9 +307,7 @@
               <button type="submit" class="form-control btn">Login</button>
             </form>
           </div>
-          <div class="modal-footer justify-content-center">
-            <div class="text-danger" id="errorMessage"></div>
-          </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
@@ -337,7 +332,6 @@
     <script src="js/20880275.js"></script>
     <!-- Submit => kiem tra RECAPTCHA (output: Google tra ve token) Bat loi => SendMail : 1. kiem tra token Bat loi 2. Gui Data Bat loi  -->
     <script>
-      checkLogin();
       function onSubmit(e) {
         e.preventDefault();
         grecaptcha.enterprise.ready(function () {

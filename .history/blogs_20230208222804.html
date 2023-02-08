@@ -78,9 +78,7 @@
                 class="nav-link linkLogouts"
                 href="#"
                 data-bs-toggle="modal"
-                data-bs-target="#modalLogin" 
-                onclick="logOut()"
-                style="display: none;"
+                data-bs-target="#modalLogin" onclick="logOut()"
                 >Logout</a
               >
             </li>
@@ -131,20 +129,11 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link linkLogins"
+            class="nav-link"
             href="#"
             data-bs-toggle="modal"
             data-bs-target="#modalLogin"
             >Login</a
-          >
-          <a
-            class="nav-link linkLogouts"
-            href="#"
-            data-bs-toggle="modal"
-            data-bs-target="#modalLogin"
-            onclick="logOut()"
-            style="display: none;"
-            >Logout</a
           >
         </li>
       </ul>
@@ -179,7 +168,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="#" method="post" id="formLogin" onsubmit="login(event)">
+            <form action="#" method="post" id="formLogin">
               <h3 class="text-center">Login Form</h3>
               <div class="mb-3">
                 <input
@@ -202,9 +191,7 @@
               <button type="submit" class="form-control btn">Login</button>
             </form>
           </div>
-          <div class="modal-footer justify-content-center">
-            <div class="text-danger" id="errorMessage"></div>
-          </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
@@ -376,8 +363,6 @@
         var view = document.getElementById("blogs");
         view.innerHTML = template(context);
       }
-
-      checkLogin();
       loadBlogs("blogs"); //currentPage default = 1
       loadData(
         "blogs-categories",

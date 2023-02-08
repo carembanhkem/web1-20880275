@@ -92,6 +92,5 @@ async function verifyToken() {
 }
 
 function logOut() {
-    localStorage.clear();
-    displayControls(false);
+    localStorage.clear()
 }

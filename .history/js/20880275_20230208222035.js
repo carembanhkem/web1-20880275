@@ -21,7 +21,7 @@ async function getAuthenticateToken(username, password) {
             "Content-Type": "application/json",
             "Accept": "application/json",
         },
-        body: JSON.stringify({username, password}) //2 test user: test, 1c3cr3@m ; web1 W3b1@Project
+        body: JSON.stringify({username, password}) //2 test user: test, 1c3cr3@m ; web1 W3
     });
     let result = await response.json();
     if (response.status == 200){
@@ -89,9 +89,4 @@ async function verifyToken() {
         }
     }
     return false;
-}
-
-function logOut() {
-    localStorage.clear();
-    displayControls(false);
 }

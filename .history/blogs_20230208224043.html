@@ -55,13 +55,13 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="about.html">About</a>
+              <a class="nav-link" href="about.html">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="gallery.html">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="blogs.html">Blogs</a>
+              <a class="nav-link active" href="blogs.html">Blogs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contacts</a>
@@ -78,9 +78,7 @@
                 class="nav-link linkLogouts"
                 href="#"
                 data-bs-toggle="modal"
-                data-bs-target="#modalLogin" 
-                onclick="logOut()"
-                style="display: none;"
+                data-bs-target="#modalLogin" onclick="logOut()"
                 >Logout</a
               >
             </li>
@@ -99,35 +97,18 @@
       </nav>
     </header>
 
-    <!-- Small Banner -->
+    <!-- Banner -->
     <section id="banner-small"></section>
 
     <!-- Content -->
-    <div id="content">
-        <section class="container py-5">
-        <div class="row">
-            <div class="col-md-8 col-sm-12" id="about-us"></div>
-            <div class="col-md-4 col-sm-12" id="visions">
-                
-            </div>
-        </div>
-        </section>
-        <!-- Testimonials-->
-        <section class="container-fluid py-5" id="testimonials">
-        
-        </section>
+    <section class="container py-5">
+      <div class="row">
+        <div class="col-8" id="blogs"></div>
 
-        <!-- Our Team-->
-        <section id="our-team" class="container">
-        <div class="row">
-            <h1>Our Team</h1>
-            <div class="row py-3" id="team">
-            
-            </div>
-        </div>
-        </section>
-    </div>
-    
+        <div class="col-4" id="blogs-categories"></div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="text-center container-fluid text-white py-3">
       <ul class="nav justify-content-center py-3" id="menu-footer">
@@ -135,13 +116,13 @@
           <a class="nav-link" href="#" aria-current="page">Hone</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="about.html">About</a>
+          <a class="nav-link" href="about.html">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="gallery.html">Gallery</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="blogs.html">Blogs</a>
+          <a class="nav-link active" href="blogs.html">Blogs</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="contact.html">Contacts</a>
@@ -160,7 +141,6 @@
             data-bs-toggle="modal"
             data-bs-target="#modalLogin"
             onclick="logOut()"
-            style="display: none;"
             >Logout</a
           >
         </li>
@@ -220,12 +200,13 @@
             </form>
           </div>
           <div class="modal-footer justify-content-center">
-            <div class="text-danger" id="errorMessage"></div>
-          </div>
+            <div class="text-danger" id="errorMessage">
+            
+            </div>
+        </div>
         </div>
       </div>
     </div>
-
 
     <!-- Boostrap JavaScript Libraries -->
     <script
@@ -248,83 +229,165 @@
       referrerpolicy="no-referrer"
     ></script>
     <!-- Link to JS file -->
+    <script src="js/handlebars-pagination-helper.js"></script>
     <script src="js/20880275.js"></script>
 
     <!-- Templates -->
-    <script id="aboutus-template" type="text/x-handlebars-template">
+    <script id="blogs-categories-template" type="text/x-handlebars-template">
+      <h1>Categories</h1>
+      <ul class="py-3" id="blogs-categories">
         {{#each data}}
-        <h1 class="py-3">{{name}}</h1>
-        <div>
-            <img src="{{thumbpath}}" alt="{{name}}" class="float-start rounded-4 me-3">
-            <div class="text-black-50">{{{summary}}}</div><!-- The p khong nam trong the p duoc nen dung the div-->
-            <a href="#" class="btn btn-link readmore ps-0" onclick="loadData('aboutus/{{id}}', 'details-template', 'content')">Read more</a>
-        </div>
+          <li><a
+              href="#"
+              class="text-black-50 text-decoration-none"
+              onclick="loadBlogs('blogs/categories/{{id}}')"
+            >{{name}}</a></li><!--Default current page = 1 -->
         {{/each}}
+      </ul>
     </script>
-
-    <script id="visions-template" type="text/x-handlebars-template">
-        <h1 class="py-3">Our Vision</h1>
-        {{#each data}}
-        <div class="clearfix mb-3">
-            <a href="#" onclick="loadData('visions/{{id}}', 'details-template', 'content')" class="text-decoration-none">
-                <img src="{{thumbpath}}" alt="{{name}}" class="float-start me-3 rounded-4"/>
-                <h3 class="text-black">{{name}}</h3>
-                <p class="text-black-50">
-                {{summary}}
-                </p>
-            </a>
+    <script id="blogs-template" type="text/x-handlebars-template">
+      <h1>Blogs</h1>
+      {{#each data}}
+      <div class="clearfix py-3">
+        <!--<strong>{{id}}</strong> Test--> 
+        <h3>{{name}}</h3>
+        <p class="text-black-50">
+          by {{author}} in
+          <a href="#" onclick="loadBlogs('blogs/categories/{{category.id}}')">{{category.name}}</a>
+          on {{formatDate date}}.<a href="" onclick="loadBlogDetails({{id}}, true)">Comments ({{comments.length}})</a><!-- Su dung Handlebars Helper-->
+        </p>
+        <img
+          src="{{thumbpath}}"
+          alt="{{name}}"
+          class="float-start me-3 border rounded-4"
+        />
+        <p>
+          {{summary}}
+        </p>
+        <a href="#" class="btn btn-link readmore ps-0" onclick="loadBlogDetails({{id}})">Read more</a>
+      </div>
+      {{/each}}
+      {{#pagination currentPage pageCount}}<!-- Library nay khi su dung can 2 tham so truyen vao cua context la currentPage va pageCount-->
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          {{#each pages}}
+          {{#if isCurrent}}
+          <li class="page-item disabled" aria-current="page">
+            <a class="page-link" href="#" onclick="loadBlogs('{{../../request}}', {{page}})">{{page}}</a><!-- Dung chinh request ban dau da truyen cua context, nhung vi dang o trong property data => pagination => pages nen ta phai dung ../.. de ve lai data va goi requests cua data -->
+          </li>
+          {{/if}}
+          {{#unless isCurrent}}
+          <li class="page-item"><a class="page-link" href="#" onclick="loadBlogs('{{../../request}}', {{page}})">{{page}}</a></li>
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </nav>
+      {{/pagination}}
+    </script>
+    <script id="blog-details-template" type="text/x-handlebars-template">
+      <h1>Blogs</h1>
+      {{#each data}}
+      <div class="py-3">
+        <h3>{{name}}</h3>
+        <p class="text-black-50">by {{author}} in {{category.name}} on {{formatDate date}}. <a href="#comments">Comments ({{comments.length}})</a></p>
+        <img src="{{imagepath}}" alt="{{name}}" class="float-start me-3 rounded-4">
+        <div class="text-black-50">
+          {{{description}}}
         </div>
-        {{/each}}
-    </script>
-
-    <script id="testimonials-template" type="text/x-handlebars-template">
-        <div class="container">
-            <h1 class="text-white">Testimonials</h1>
-            <div class="row py-3">
-                {{#each data}}
-                <div class="col">
-                <p class="text-black-50">
-                {{summary}}
-                </p>
-                <span class="text-white">{{name}}</span><br />
-                <a href="#">{{email}}</a>
-                </div>
-                {{/each}}
+      </div>
+      <div class="py-3">
+        <h3>Leave your comments</h3>
+        <form action="#" method="post" class="text-black-50">
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name (Required)</label>
+                <input type="text"
+                  class="form-control" name="name" id="name" placeholder="" required>
+              </div>
             </div>
-        </div>
-        
-    </script>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text"
+                  class="form-control" name="email" id="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="mb-3">
+              <textarea class="form-control" name="message" id="message" rows="3" placeholder="Enter your message" required></textarea>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="agree" value="1" required>
+                  <label class="form-check-label" for="agree">Agree to terms and conditions</label>
+                </div>
+                <div class="col text-end">
+                  <button type="submit" class="btn btn-link py-0 my-0">Submit Comment</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
-    <script id="team-template" type="text/x-handlebars-template">
-        {{#each data}}
-        <div class="col">
-            <a href="#" onclick="loadData('team/{{id}}','details-template','content')" class="text-decoration-none">
-                <img src="{{thumbpath}}" alt="{{name}}" class="rounded-4 mb-3 img-fluid"/><!--img-fluid de hinh khong bi tran cot-->
-                <h4 class="text-black">{{name}}</h4>
-                <p class="text-black-50">
-                {{summary}}
-                </p>
-            </a>
-        </div>
+      <a id="comments"></a>
+      <div class="bg-dark text-white-50 p-2">
+        COMMENTS ({{comments.length}})
+      </div>
+
+      <div class="py-3 text-black-50">
+        {{#each comments}}<!-- Dang o trong each data roi -->
+          <div>
+            <p>{{name}} - {{formatDate date}}</p>
+            <p>{{summary}}</p>
+            <hr/>
+          </div>
         {{/each}}
+      </div>
+      {{/each}}
     </script>
+    <!-- Dinh nghia Handlebar Helper-->
+    <script>
+      Handlebars.registerHelper("formatDate", function(date) {
+        let formatDate = new Date(date);
+        let option = {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          timeZoneName: "short"
+        };
+        return formatDate.toLocaleString('en-US', option);//Ham format DateTime
+      })
+      async function loadBlogs(request, currentPage = 1) {
+        const response = await fetch(`${API}/${request}?${currentPage}`);
+        const context = await response.json();
+        context.currentPage = currentPage; //Khoi tao gia tri currentPage cho context de su dung library pagination. Page Cout thi cos trong context luon roi
+        context.request = request; //Ta truyen request vao trong context luon de sau nay co the su dung pagination voi chinh request ban dau
+        //Compile a template in JavaScript by using Handlebars.compile
+        var source = document.getElementById("blogs-template").innerHTML;
+        var template = Handlebars.compile(source);
+        //Display on view
+        var view = document.getElementById("blogs");
+        view.innerHTML = template(context);
+      }
+      loadBlogs("blogs"); //currentPage default = 1
+      loadData(
+        "blogs-categories",
+        "blogs-categories-template",
+        "blogs-categories"
+      );
 
-    <script id="details-template" type="text/x-handlebars-template">
-        <div class="container py-5 overflow-auto">
-            {{#each data}}
-            <h1 class="py-3">{{name}}</h1>
-            <img src="{{imagepath}}" alt="{{name}}" class="float-start rounded-4 me-3">
-            <p>{{{description}}}</p>
-            {{/each}}
-        </div>
-    </script>
-
-    <script> //Lam trong web dong
-      checkLogin();
-      loadData("aboutus", "aboutus-template", "about-us");
-      loadData("visions", "visions-template", "visions");
-      loadData("testimonials", "testimonials-template", "testimonials");
-      loadData("team", "team-template", "team");
+      async function loadBlogDetails(blogId, gotoComments = false) {
+        await loadData(`blogs/${blogId}`, "blog-details-template", "blogs");
+        if (gotoComments) {
+          window.location.href = "#comments";//De window tu dieu huong them toi id comments
+        }
+      }
     </script>
   </body>
 </html>
