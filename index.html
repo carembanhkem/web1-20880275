@@ -386,8 +386,7 @@
             <p class="text-black-50">{{summary}}</p>
             <a
               class="readmore btn btn-link pt-0"
-              href="#"
-              onclick="loadData('products/{{id}}', 'details-template', 'content')"
+              href="?request=products/{{id}}"
             >Read more</a>
           </div>
         {{/each}}
@@ -403,7 +402,7 @@
               <div class="date text-white text-center rounded-4 py-1">
                 <h3>{{date}}</h3>
               </div>
-              <a href="#" class="btn btn-link readmore ps-0" onclick="loadData('news/{{id}}', 'details-template', 'content')">Read more</a>
+              <a href="?request=news/{{id}}" class="btn btn-link readmore ps-0">Read more</a>
             </div>
             <div>
               <h3>{{name}}</h3>
@@ -425,10 +424,16 @@
       {{/each}}
     </script>
     <script>
+      let searchParams = new URLSearchParams(location.search);
+      let request = searchParams.get("request");
+      if (request) {
+        loadData(request, "details-template", "content"); //Cách 1 này chỉ áp dụng được vì Product và New đang có cầu cấu trúc để load vào details-template (chỉ yêu cầu name, description như phần script details template, và phần onclick đã xóa)
+      } else {
       checkLogin();
       loadData("products", "products-template", "products");
       loadData("news", "news-template", "news");
-
+      }
+      
       function setActiveImagePath(img, imagepath, isActive = true)//Gia tri mac dinh la true 
       {
         if (isActive) {

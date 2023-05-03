@@ -106,7 +106,8 @@
     <section id="banner-small"></section>
 
     <!-- Content -->
-    <div id="content">
+    <div id="content"></div>
+    <div id="main">
         <section class="container py-5">
         <div class="row">
             <div class="col-md-8 col-sm-12" id="about-us"></div>
@@ -122,12 +123,7 @@
 
         <!-- Our Team-->
         <section id="our-team" class="container">
-        <div class="row">
-            <h1>Our Team</h1>
-            <div class="row py-3" id="team">
-            
-            </div>
-        </div>
+        
         </section>
     </div>
     
@@ -260,7 +256,7 @@
         <div>
             <img src="{{thumbpath}}" alt="{{name}}" class="float-start rounded-4 me-3">
             <div class="text-black-50">{{{summary}}}</div><!-- The p khong nam trong the p duoc nen dung the div-->
-            <a href="#" class="btn btn-link readmore ps-0" onclick="loadData('aboutus/{{id}}', 'details-template', 'content')">Read more</a>
+            <a href="#aboutus/{{id}}" class="btn btn-link readmore ps-0" onclick="loadDetails('aboutus/{{id}}', 'details-template', 'content')">Read more</a>
         </div>
         {{/each}}
     </script>
@@ -269,7 +265,7 @@
         <h1 class="py-3">Our Vision</h1>
         {{#each data}}
         <div class="clearfix mb-3">
-            <a href="#" onclick="loadData('visions/{{id}}', 'details-template', 'content')" class="text-decoration-none">
+            <a href="#visions/{{id}}" onclick="loadDetails('visions/{{id}}', 'details-template', 'content')" class="text-decoration-none">
                 <img src="{{thumbpath}}" alt="{{name}}" class="float-start me-3 rounded-4"/>
                 <h3 class="text-black">{{name}}</h3>
                 <p class="text-black-50">
@@ -299,17 +295,23 @@
     </script>
 
     <script id="team-template" type="text/x-handlebars-template">
-        {{#each data}}
-        <div class="col">
-            <a href="#" onclick="loadData('team/{{id}}','details-template','content')" class="text-decoration-none">
-                <img src="{{thumbpath}}" alt="{{name}}" class="rounded-4 mb-3 img-fluid"/><!--img-fluid de hinh khong bi tran cot-->
-                <h4 class="text-black">{{name}}</h4>
-                <p class="text-black-50">
-                {{summary}}
-                </p>
-            </a>
+      <div class="row">
+        <h1>Our Team</h1>
+        <div class="row py-3" id="team">
+          {{#each data}}
+          <div class="col">
+              <a href="#team/{{id}}" onclick="loadDetails('team/{{id}}','details-template','content')" class="text-decoration-none">
+                  <img src="{{thumbpath}}" alt="{{name}}" class="rounded-4 mb-3 img-fluid"/><!--img-fluid de hinh khong bi tran cot-->
+                  <h4 class="text-black">{{name}}</h4>
+                  <p class="text-black-50">
+                  {{summary}}
+                  </p>
+              </a>
+          </div>
+          {{/each}}
         </div>
-        {{/each}}
+      </div>
+        
     </script>
 
     <script id="details-template" type="text/x-handlebars-template">
@@ -324,10 +326,37 @@
 
     <script> //Lam trong web dong
       checkLogin();
-      loadData("aboutus", "aboutus-template", "about-us");
-      loadData("visions", "visions-template", "visions");
-      loadData("testimonials", "testimonials-template", "testimonials");
-      loadData("team", "team-template", "team");
+      if (location.hash == "" || location.hash == "#") {
+        loadPage();
+      } else {
+        //console.log(location.hash);
+        loadDetails(location.hash.substr(1), "details-template", "content");
+      }
+      function loadPage(){
+        document.getElementById("main").style.display = "block";
+        document.getElementById("content").style.display = "none";
+
+        loadData("aboutus", "aboutus-template", "about-us");
+        loadData("visions", "visions-template", "visions");
+        loadData("testimonials", "testimonials-template", "testimonials");
+        loadData("team", "team-template", "our-team");
+        history.replaceState({ loadPage: 1}, null, location.href)
+      }
+      async function loadDetails(request, templateId, viewId) { //chi load trong trang chu khong load lai toan trang
+        document.getElementById("main").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        await loadData(request, templateId, viewId);
+        history.replaceState({ request, templateId, viewId }, null, location.href)
+      }
+      //Event xay ra khi nhan Back hoac Forward
+      window.onpopstate = (event) => {
+        let state = event.state;
+        if (state && state.loadPage) {
+          loadPage();
+        } else if (state && state.request) {
+          loadDetails(state.request, state.templateId, state.viewId)
+        }
+      }
     </script>
   </body>
 </html>
