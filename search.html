@@ -17,7 +17,7 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/20880275.css">
+    <link rel="stylesheet" href="css/20880275..min.css">
 </head>
 
 <body>
@@ -166,33 +166,12 @@
     </script>
 
     <!-- Handlebars JS-->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
-      integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.runtime.min.js" integrity="sha512-1JsLHOJ3aKKxY96SA64yDTGQXo46wjivsGj6LiZGQaz0V6cGpGjfFOm1fnH9WkNwf8FFaIU8jVrvAjSESKESww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/search.template.min.js"></script>
     <!-- Link to JS file -->
-    <script src="js/20880275.js"></script>
+    <script src="js/20880275.min.js"></script>
 
-    <script id="search-template" type="text/x-handlebars-template">
-        {{#each data}}
-        <div class="py-3">
-            <a class="text-decoration-none" href="#" onclick="loadData('{{type}}/{{id}}', 'details-template', 'content')"><h1 class="text-black">{{name}}</h1></a>
-            <div class="text-black-50">{{summary}}</div>
-        </div>
-        {{/each}}
-    </script>
-    
-    <script id="details-template" type="text/x-handlebars-template">
-        {{#each data}}
-        <h1>{{name}}</h1>
-        {{#if imagepath}}
-        <img src="{{imagepath}}" alt="{{name}}" class="float-start me-3">
-        {{/if}}
-        <div class="text-black-50">{{{description}}}</div>
-        {{/each}}
-    </script>
+    <!-- Templates -->
 
     <script>
         checkLogin();

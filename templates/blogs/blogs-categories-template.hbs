@@ -1,0 +1,11 @@
+<h1>Categories</h1>
+      <ul class="py-3" id="blogs-categories">
+        {{#each data}}
+          <li><a
+              href="#"
+              class="text-black-50 text-decoration-none"
+              onclick="loadBlogs('blogs/categories/{{id}}')"
+            >{{name}}</a></li><!--Default current page = 1 -->
+        {{/each}}
+      </ul>
+    </script>

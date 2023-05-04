@@ -1,0 +1,16 @@
+<div class="row">
+        <h1>Our Team</h1>
+        <div class="row py-3" id="team">
+          {{#each data}}
+          <div class="col">
+              <a href="#team/{{id}}" onclick="loadDetails('team/{{id}}','details-template','content')" class="text-decoration-none">
+                  <img src="{{thumbpath}}" alt="{{name}}" class="rounded-4 mb-3 img-fluid"/><!--img-fluid de hinh khong bi tran cot-->
+                  <h4 class="text-black">{{name}}</h4>
+                  <p class="text-black-50">
+                  {{summary}}
+                  </p>
+              </a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
